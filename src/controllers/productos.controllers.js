@@ -20,7 +20,7 @@ export const getProductos = async(req, res) => {
       res.json(rows)
     } catch (error) {
       return res.status(500).json({
-        message:"Algo salio mal! :( ... Porfavor de verificar"
+        message:"Algo salio mal! :( ... Porfavor de verificar" + error
       })
     }
   }
