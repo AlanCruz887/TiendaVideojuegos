@@ -17,11 +17,12 @@ export const addClientes = async (req, res) => {
 
   export const getClienteByEmailAndName = async(req, res) => {
     try {
-      const [rows] = await pool.query("SELECT * FROM Clientes WHERE nombre=? AND email=?", [req.params.nombre, req.params.email])
-      res.status(200).json(rows);
+      console.log(req.body);
+      const [rows] = await pool.query("SELECT * FROM Clientes WHERE nombre=? AND email=?", [req.body.nombre, req.body.email])
+      res.status(202).json(rows);
     } catch (error) {
       return res.status(500).json({
-        message:"Algo salio mal! :( ... Porfavor de verificar"
+        message:"Algo salio mal! :( ... Porfavor de verificar" + error
       })
     }
   }
@@ -43,7 +44,7 @@ export const getCliente = async(req, res) => {
       res.json(rows)
     } catch (error) {
       return res.status(500).json({
-        message:"Algo salio mal! :( ... Porfavor de verificar"
+        error
       })
     }
   }
