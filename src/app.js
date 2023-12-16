@@ -7,8 +7,8 @@ import cors from 'cors';
 
 const app = express();
 
-app.use(express.json());
 app.use(cors()); // Esta línea desactiva CORS, colócala al principio para que se aplique a todas las rutas
+app.use(express.json());
 app.use('/api', productoRouter);
 app.use('/api', clienteRouter);
 app.use('/api', ventaRouter);
