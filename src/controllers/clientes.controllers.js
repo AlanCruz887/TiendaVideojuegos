@@ -15,6 +15,17 @@ export const addClientes = async (req, res) => {
     })
   }
 
+  export const getClienteByEmailAndName = async(req, res) => {
+    try {
+      const [rows] = await pool.query("SELECT * FROM Clientes WHERE nombre=? AND email=?", [req.params.nombre, req.params.email])
+      res.status(200).json(rows);
+    } catch (error) {
+      return res.status(500).json({
+        message:"Algo salio mal! :( ... Porfavor de verificar"
+      })
+    }
+  }
+
 export const getClientes = async(req, res) => {
     try {
       const [rows] = await pool.query("SELECT * FROM Clientes")
